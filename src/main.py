@@ -1,4 +1,5 @@
-from meal_mate_functions import view_ingr, add_ingr, remove_ingr, staple_view_ingr, staple_edit_ingr, get_recipes
+from meal_mate_functions import view_ingr, add_ingr, remove_ingr, staple_view_ingr, staple_edit_ingr
+from search_functions import get_recipes
 from colored import fg, bg, attr  # https://pypi.org/project/colored/
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import cm
@@ -92,10 +93,10 @@ while user_choice != "7":
         case "7":
             continue
         case _:
-            print(f"{bg(1)}Invalid input{attr(0)}")
+            print(f"{bg(1)}Invalid input{attr(0)}\n")
             time.sleep(1)
             continue
 
-    input(f"{bg(177)}Press Enter to continue...{attr(0)}")
+    input(f"{bg(177)}Press Enter to continue...{attr(0)}\n")
 
 print(f"{bg(2)}Thank you for using Meal Mate{attr(0)}")

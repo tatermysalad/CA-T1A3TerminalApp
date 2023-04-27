@@ -1,5 +1,4 @@
 import csv
-import requests  # https://pypi.org/project/requests/
 from colored import fg, bg, attr
 import time
 import random
@@ -73,53 +72,3 @@ def staple_edit_ingr(staple_file_name):
         writer = csv.writer(f)
         writer.writerows(staple_lists)
     staple_view_ingr(staple_file_name)
-
-
-def get_recipes(ingr_file_name, staple_file_name):
-    p = ""  # pantry + staples
-    with open(ingr_file_name, "r") as f:
-        reader = csv.reader(f)
-        reader.__next__()
-        for row in reader:
-            p = p + row[0] + ","
-    with open(staple_file_name, "r") as f:
-        reader = csv.reader(f)
-        reader.__next__()
-        for row in reader:
-            if row[1] == "True":
-                p = p + row[0] + ","
-    print(f'{fg(111)}Searching for recipes with {len(p.split(","))} items{attr(0)}')
-    r = requests.get(
-        'https://api.spoonacular.com/recipes/findByIngredients?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=' + p)
-    # r.headers['content-type'] = 'application/json; charset=utf8'
-    json = r.json()
-    i = x = 0
-    if len(json) > 0:
-        for recipe in json:
-            if recipe["usedIngredientCount"] == len(p.split(",")):
-                print(f'{recipe["title"]} contains all of your ingredients!')
-        for recipe in json:
-            if recipe["usedIngredientCount"] != len(p.split(",")) and x == 0:
-                print(f"{bg(1)}Here are some recipes which may require a trip to the shops{attr(0)}")
-                time.sleep(2)
-                x += 1
-        for recipe in json:
-            if recipe["usedIngredientCount"] != len(p.split(",")):
-                i += 1
-                print(f'{fg(random.randrange(0,256))}{i}. {recipe["title"]}{attr(0)}')
-                print(f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
-                time.sleep(0.5)
-    elif len(json) == 0:
-        print("No recipes found\nPlease use remove some ingredients or consider changing the prioritisation")
-        return
-
-    def search_menu():
-        print(f"{bg(5)}1. View more details about a recipe{attr(0)}")
-        print(f"{bg(5)}2. Export a recipe{attr(0)}")
-        print(f"{fg(4)}Exit{attr(0)}")
-        print(f"{fg(2)}3.{attr(0)} to {fg(2)}exit{attr(0)}")
-        # local variable
-        search_choice = input("Enter your selection: ")
-        return search_choice
-    def search_menu():
-    while 
