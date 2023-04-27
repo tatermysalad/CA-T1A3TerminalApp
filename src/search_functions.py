@@ -1,8 +1,10 @@
+import csv
 import requests  # https://pypi.org/project/requests/
 from colored import fg, bg, attr
 import time
 import random
 import pdfkit
+import re
 
 
 def get_recipes(ingr_file_name, staple_file_name):
@@ -60,29 +62,46 @@ def get_recipes(ingr_file_name, staple_file_name):
     def recipe_menu(json):
         try:
             recipe_int = int(input(
-                "Press q to return to search options menu\nView more details about which recipe: "))
-            recipe_id = json[recipe_int - 1]["id"]
-            return requests.get(
-                'https://api.spoonacular.com/recipes/' + recipe_id + '/information?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=')
+                "Press q to return to search options menu\nWhich number recipe?: "))
+            recipe_id = str(json[recipe_int - 1]["id"])
+            recipe_id_response = requests.get(
+                'https://api.spoonacular.com/recipes/' + recipe_id + '/information?apiKey=3e06d892f3044bab8b766176ccd0e18c')
+            return recipe_id_response.json()
         except ValueError:
             return
 
-    def recipe_export(recipe_menu):
-        pass
+    CLEANR = re.compile('<.*?>')
+
+    def cleanhtml(raw_html):
+        cleantext = re.sub(CLEANR, '', raw_html)
+        return cleantext
+
+    def recipe_export(json):
+        recipe_id_details = recipe_menu(json)
+        cleaned_summary = cleanhtml(recipe_id_details["summary"])
+        index_clean_summary = cleaned_summary.find("If you like this recipe")
+        print(recipe_id_details["title"])
+        print(f'Total cooking time: {recipe_id_details["readyInMinutes"]}')
+        print(f'Serving size: {recipe_id_details["servings"]}')
+        print(f'Ingredients:')
+        for ingredients in recipe_id_details["extendedIngredients"]:
+            print(f'-  ingredients["original"]')
+        print(f'Summary:\n{cleaned_summary[:index_clean_summary]}')
 
     def specific_recipe(recipe_menu):
-        recipe_item = requests.get(
-            'https://api.spoonacular.com/recipes/' + recipe_menu + '/information?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=')
-    # r.headers['content-type'] = 'application/json; charset=utf8'
+        recipe_id_details = recipe_menu(json)
+        print(recipe_details["summary"])
+
     json = r.json()
     search_choice = ""
     while search_choice != "3":
         search_choice = search_menu()
         match search_choice:
             case "1":
-                recipe_menu(json)
+                recipe_export(json)
             case "2":
                 pass
             case "3":
                 continue
+
         input(f"{bg(177)}Press Enter to continue...{attr(0)}\n")
