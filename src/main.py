@@ -1,13 +1,7 @@
-from meal_mate_functions import view_ingr, add_ingr, remove_ingr, staple_view_ingr, staple_edit_ingr
+from meal_mate_functions import view_ingr, add_ingr, remove_ingr, staple_view_ingr, staple_edit_ingr, staple_ignore
 from search_functions import get_recipes
 from colored import fg, bg, attr  # https://pypi.org/project/colored/
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import cm
-# c = canvas.Canvas('ex.pdf')
-# c.drawImage('ar.jpg', 0, 0, 10*cm, 10*cm)
-# c.showPage()
-# c.save()  # https://www.reportlab.com/docs/reportlab-userguide.pdf
-# https://stackoverflow.com/questions/2252726/how-to-create-pdf-files-in-python
+import pdfkit
 import time
 
 print(f"{fg(64)}Welcome to Meal Mate{attr(0)} \n{fg(18)}'The recipe finder for your pantry items you don't know what to with!' {attr(0)}")
@@ -38,16 +32,12 @@ Vinegar,True
 Salt,True
 Pepper,True
 Oregano,True
-Bay Leaves,True
 Parsley,True
-Thyme,True
 Chilli Powder,True
 Ground Cumin,True
-Smoked Paprika,True
-Turmeric,True
+Paprika,True
 Cinnamon,True
 Curry Powder,True
-Honey,True
 Garlic,True
 Onion,True
 Ginger,True""")
@@ -59,13 +49,14 @@ def create_menu():
     print(f"{fg(28)}1.{attr(0)} to {fg(28)}view{attr(0)} you ingredient list")
     print(f"{fg(2)}2.{attr(0)} to {fg(2)}add{attr(0)} a new item to your list")
     print(f"{fg(1)}3.{attr(0)} to {fg(1)}remove{attr(0)} item from your list")
-    print(f"{bg(50)}Staple items ie. salt, pepper, oil, vinegar{attr(0)}")
-    print(f"{fg(28)}4.{attr(0)} to {fg(28)}view{attr(0)} you ingredient list")
-    print(f"{fg(90)}5.{attr(0)} to {fg(90)}adjust{attr(0)} an item on your list")
+    print(f"{bg(58)}Staple items ie. salt, pepper, oil, vinegar{attr(0)}")
+    print(f"{fg(28)}4.{attr(0)} to {fg(28)}view{attr(0)} you staple list")
+    print(f"{fg(90)}5.{attr(0)} to {fg(90)}change{attr(0)} a staple item")
+    print(f"{fg(104)}6. {attr(0)}to {fg(104)}ignore{attr(0)} staple items in search")
     print(f"{bg(90)}Search{attr(0)}")
-    print(f"{fg(111)}6.{attr(0)} to {fg(111)}search{attr(0)} for recipes")
+    print(f"{fg(111)}7.{attr(0)} to {fg(111)}search{attr(0)} for recipes")
     print(f"{fg(4)}Exit{attr(0)}")
-    print(f"{fg(2)}7.{attr(0)} to {fg(2)}exit{attr(0)}")
+    print(f"{fg(2)}8.{attr(0)} to {fg(2)}exit{attr(0)}")
     # local variable
     choice = input("Enter your selection: ")
     return choice
@@ -74,7 +65,7 @@ def create_menu():
 # global variable
 user_choice = ""
 
-while user_choice != "7":
+while user_choice != "8":
     user_choice = create_menu()
 
     match user_choice:
@@ -89,8 +80,16 @@ while user_choice != "7":
         case "5":
             staple_edit_ingr(staple_file_name)
         case "6":
-            get_recipes(ingr_file_name, staple_file_name)
+            staple__default_setting = True
+            staple_ignore_response = input(
+                f"Do you want to use the staple items list in search? (y/n): ")
+            staple_setting = staple_ignore(staple_ignore_response)
+            print(staple_setting)
+            print(
+                f"The current setting is to {fg(5)}{'use the staple list' if staple_setting else 'ignore your staple list'}{attr(0)}")
         case "7":
+            get_recipes(ingr_file_name, staple_file_name)
+        case "8":
             continue
         case _:
             print(f"{bg(1)}Invalid input{attr(0)}\n")

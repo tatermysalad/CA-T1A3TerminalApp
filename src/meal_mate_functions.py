@@ -3,16 +3,14 @@ from colored import fg, bg, attr
 import time
 import random
 
+
 def view_ingr(file_name):
     print(f"{bg(28)}View pantry items{attr(0)}")  # dark green color
     with open(file_name, "r") as f:
         reader = csv.reader(f)
         reader.__next__()
         for row in reader:
-            if row[1] == "True":
-                print(f"{row[0]} {fg(58)}(prioritised){attr(0)}")  # orange
-            else:
-                print(f"{row[0]}")
+            print(f"{row[0]}")
 
 
 def add_ingr(file_name):
@@ -20,7 +18,7 @@ def add_ingr(file_name):
     ingr_title = input("Enter your ingredient: ")
     with open(file_name, "a") as ingr_file:
         writer = csv.writer(ingr_file)
-        writer.writerow([ingr_title, "False"])
+        writer.writerow([ingr_title])
 
 
 def remove_ingr(file_name):
@@ -72,3 +70,14 @@ def staple_edit_ingr(staple_file_name):
         writer = csv.writer(f)
         writer.writerows(staple_lists)
     staple_view_ingr(staple_file_name)
+
+def staple_ignore(staple_ignore_response):
+    match staple_ignore_response:
+        case 'y':
+            return
+        case 'n':
+            return False
+        case _:
+            print(f"{bg(1)}Please enter y (for yes) or n (for no){attr(0)}")
+            time.sleep(1)
+    
