@@ -88,8 +88,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         recipe_id_details = recipe_menu(json)
         cleaned_summary = cleanhtml(recipe_id_details["summary"])
         index_clean_summary = cleaned_summary.split(".")
-        shortened_summary = cleaned_summary[:index_clean_summary[-2]]
-        # index_clean_summary = cleaned_summary.find("If you like this recipe")
+        # shortened_summary = cleaned_summary[:index_clean_summary[-2]]
+        index_clean_summary_position = cleaned_summary.find(index_clean_summary[-3])
         print(
             f'{fg(random.randrange(0, 256))}{recipe_id_details["title"]}{attr(0)}')
         print(
@@ -101,7 +101,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             print(f'-  {ingredients["original"]}')
         print(
             # f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary]}{attr(0)}')
-            f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary[-2]]}{attr(0)}')
+            f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary_position]}{attr(0)}')
 
     json = r.json()
     search_choice = ""
