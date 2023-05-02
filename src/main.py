@@ -45,7 +45,7 @@ Ginger,True""")
 
 
 def create_menu():
-    print(f"{bg(5)}Pantry items{attr(0)}")
+    print(f"\n{bg(5)}Pantry items{attr(0)}")
     print(f"{fg(28)}1.{attr(0)} to {fg(28)}view{attr(0)} you ingredient list")
     print(f"{fg(2)}2.{attr(0)} to {fg(2)}add{attr(0)} a new item to your list")
     print(f"{fg(1)}3.{attr(0)} to {fg(1)}remove{attr(0)} item from your list")
