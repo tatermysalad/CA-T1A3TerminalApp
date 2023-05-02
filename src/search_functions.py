@@ -38,7 +38,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
                 print(
                     f'{fg(random.randrange(0,256))}{i}. {recipe["title"]}{attr(0)}')
                 print(
-                    f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
+                    f'Utilises: {recipe["usedIngredientCount"]} item{"s" if recipe["usedIngredientCount"] != 1 else ""}, Requires: {recipe["missedIngredientCount"]} item{"s" if recipe["missedIngredientCount"] != 1 else ""}')
                 time.sleep(0.1)
             else:
                 if x == 0:
@@ -49,7 +49,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
                 print(
                     f'{fg(random.randrange(0,256))}{i}. {recipe["title"]}{attr(0)}')
                 print(
-                    f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
+                    f'Utilises: {recipe["usedIngredientCount"]} item{"s" if recipe["usedIngredientCount"] != 1 else ""}, Requires: {recipe["missedIngredientCount"]} item{"s" if recipe["missedIngredientCount"] != 1 else ""}')
                 time.sleep(0.1)
     elif len(json) == 0:
         print(

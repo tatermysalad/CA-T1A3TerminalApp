@@ -3,3 +3,4 @@ src/pantry_list.csv
 src/*.pdf
 src/meal_mate/
 __pycache__
+.DS_Store
