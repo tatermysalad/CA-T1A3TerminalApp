@@ -2,8 +2,6 @@
 
 ## Links
 
----
-
 [GitHub](https://github.com/tatermysalad/T1A3TerminalApp)
 <br>
 
@@ -14,13 +12,9 @@
 
 ## Style guide
 
----
-
 [Python Style Guide - Python Enhancement Proposal 8](https://peps.python.org/pep-0008/)
 
 ## Meal Mate - Proposal
-
----
 
 An recipe finding app for the command line inclined
 
@@ -33,8 +27,6 @@ The user can search for recipes with the list of ingredients needed under the re
 The target audience for this is anyone who cooks, specifically those who are interested in utilising specific/leftover ingredients.
 
 ## Meal Mate - App Features:
-
----
 
 ### Checklist of staple ingredients
 
@@ -53,8 +45,6 @@ The lists of ingredients and staples are used to search for recipes from an exte
 The user can view a summary of the recipe within the application. Once the user is satisfied, they can select the recipe to export. This uses the HTML webpage to convert to PDF and saves to the directory of the user.
 
 ## Help documentation
-
----
 
 ### System/Hardware requirements:
 
@@ -109,13 +99,11 @@ python3 main.py
 8. To remove an ingredient enter the name as it is shown, similar to alternating a value in the staple items
 9. To ignore the staple items in the search for recipes press number '6' from the main menu, then enter 'y' for yes and 'n' for no. The current option will be displayed after the entry.
 10. To search for recipes with the options presented press number '7'. This will display 5 recipes ordered by the least amount of missing ingredients.
-   ![Search](./docs/search.png)
+    ![Search](./docs/search.png)
 11. After this list you can view more details about a particular recipe, from index 1 to 5.
 12. You can also export the option in a similar way. This export will be created in the source (src) folder.
 
 ## References
-
----
 
 Find, install and publish python packages with the python package index PyPI. Available at: https://pypi.org/.
 
