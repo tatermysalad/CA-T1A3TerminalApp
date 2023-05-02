@@ -77,6 +77,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             return recipe_id_response.json()
         except ValueError:
             return
+        except IndexError:
+            print(f"Please enter a value between and including 1 and {len(json)}")
 
     CLEANR = re.compile('<.*?>')
 
@@ -106,8 +108,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
 
     def export_recipe(json):
         try:
-            recipe_id_details = recipe_menu(json)
-        except ValueError:
+            recipe_id_details = int(recipe_menu(json))
+        except TypeError:
             return
         try:
             pdfkit.from_url(recipe_id_details["spoonacularSourceUrl"],
@@ -117,8 +119,9 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         except OSError:
             print(
                 "You will need wkhtmltopdf to export, please run 'brew install homebrew/cask/wkhtmltopdf' on your machine")
-        except TypeError:
-            print("Please enter a value between and including 1 and 5")
+        except IndexError:
+            print(
+                f"Please enter a value between and including 1 and {len(json)}")
 
     json = r.json()
     search_choice = ""
@@ -130,6 +133,10 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             case "2":
                 export_recipe(json)
             case "3":
+                continue
+            case _:
+                print(f"{bg(1)}Invalid input{attr(0)}\n")
+                time.sleep(1)
                 continue
 
         input(f"{bg(177)}Press Enter to continue...{attr(0)}\n")

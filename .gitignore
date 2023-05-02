@@ -1,0 +1,5 @@
+src/staple_list.csv
+src/pantry_list.csv
+src/*.pdf
+src/meal_mate/
+__pycache__
