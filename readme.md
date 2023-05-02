@@ -7,7 +7,7 @@
 [GitHub](https://github.com/tatermysalad/T1A3TerminalApp)
 <br>
 
-[Trello](https://trello.com/invite/b/FUrubUml/ATTI813af372e91184f1cef364b2ca77be1493A1819C/t1a3terminalapp)
+[Trello](https://trello.com/b/FUrubUml/t1a3terminalapp)
 <br>
 
 [Video Presentation](https://youtube.com)
