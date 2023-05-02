@@ -24,7 +24,6 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
     print(f"\n{fg(111)}Searching for recipes with {len(p.split(',')) - 1} items{attr(0)}{' and ignoring staple items' if not staple_setting else ''}")
     r = requests.get(
         'https://api.spoonacular.com/recipes/findByIngredients?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=' + p + '&ranking=2&number=5' + ('&ignorePantry=true' if not staple_setting else ''))
-    # r.headers['content-type'] = 'application/json; charset=utf8'
     json = r.json()
     if len(json) > 0:
         i = x = y = 0
@@ -53,7 +52,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
                     f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
                 time.sleep(0.1)
     elif len(json) == 0:
-        print("No recipes found\nPlease use remove some ingredients or consider changing the prioritisation")
+        print(
+            f"{fg(1)}No recipes found{attr(0)}\nPlease add or remove ingredients")
         return
 
     def search_menu():
@@ -78,7 +78,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         except ValueError:
             return
         except IndexError:
-            print(f"Please enter a value between and including 1 and {len(json)}")
+            print(
+                f"Please enter a value between and including 1 and {len(json)}")
 
     CLEANR = re.compile('<.*?>')
 
@@ -96,15 +97,14 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         print(
             f'{fg(random.randrange(0, 256))}{recipe_id_details["title"]}{attr(0)}')
         print(
-            f'{fg(random.randrange(0,256))}Total cooking time: {recipe_id_details["readyInMinutes"]}{attr(0)}')
+            f'{fg(random.randrange(0,256))}Total cooking time:{attr(0)} {recipe_id_details["readyInMinutes"]}')
         print(
-            f'{fg(random.randrange(0,256))}Serving size: {recipe_id_details["servings"]}{attr(0)}')
+            f'{fg(random.randrange(0,256))}Serving size:{attr(0)} {recipe_id_details["servings"]}')
         print(f'{fg(random.randrange(0,256))}Ingredients:{attr(0)}')
         for ingredients in recipe_id_details["extendedIngredients"]:
             print(f'-  {ingredients["original"]}')
         print(
-            # f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary]}{attr(0)}')
-            f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary_position]}{attr(0)}')
+            f'{fg(random.randrange(0,256))}Summary:{attr(0)}\n{cleaned_summary[:index_clean_summary_position]}')
 
     def export_recipe(json):
         try:

@@ -84,7 +84,7 @@ while user_choice != "8":
                 f"Use the staple items list in your search? (y/n): ")
             staple_setting = staple_ignore(staple_ignore_response)
             print(
-                f"\nThe search function will now {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
+                f"\nThe search function is set to {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
         case "7":
             try:
                 get_recipes(ingr_file_name, staple_file_name, staple_setting)
