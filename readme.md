@@ -91,21 +91,27 @@ The user can view a summary of the recipe within the application. Once the user 
 
 ### How to use
 
-1. The main menu is navigated with numerical input, ie. entering the number 8 will exit the application.
-   ![Main Menu](./docs/Main_menu.png)
-2. Each heading has options below to view, add, and remove/ignore the lists.
-3. Viewing the lists will present the overview of the Pantry items, or this will show the 'in stock' staple items.
+1. Run the application with the install file as above, or navigate to the src (source) folder in a terminal window, and run
+
+```
+python3 main.py
+```
+
+2. The main menu is navigated with numerical input, ie. entering the number 8 will exit the application.
+   ![Main Menu](./docs/main_menu.png)
+3. Each heading has options below to view, add, and remove/ignore the lists.
+4. Viewing the lists will present the overview of the Pantry items, or this will show the 'in stock' staple items.
    ![View staple list](./docs/staple_list.png)
-4. After viewing you will need to press the 'Enter' key to return to the main menu.
-5. To add a value to the ingredient list enter the name of the ingredient, make sure to spell this correctly.
-6. To change a values availability enter its name as it is shown and the value with alternate between 'in stock' and 'out of stock'
+5. After viewing you will need to press the 'Enter' key to return to the main menu.
+6. To add a value to the ingredient list enter the name of the ingredient, make sure to spell this correctly.
+7. To change a values availability enter its name as it is shown and the value with alternate between 'in stock' and 'out of stock'
    ![Edit staple list](./docs/staple_item_change.png)
-7. To remove an ingredient enter the name as it is shown, similar to alternating a value in the staple items
-8. To ignore the staple items in the search for recipes press number '6' from the main menu, then enter 'y' for yes and 'n' for no. The current option will be displayed after the entry.
-9. To search for recipes with the options presented press number '7'. This will display 5 recipes ordered by the least amount of missing ingredients.
+8. To remove an ingredient enter the name as it is shown, similar to alternating a value in the staple items
+9. To ignore the staple items in the search for recipes press number '6' from the main menu, then enter 'y' for yes and 'n' for no. The current option will be displayed after the entry.
+10. To search for recipes with the options presented press number '7'. This will display 5 recipes ordered by the least amount of missing ingredients.
    ![Search](./docs/search.png)
-10. After this list you can view more details about a particular recipe, from index 1 to 5.
-11. You can also export the option in a similar way. This export will be created in the source (src) folder.
+11. After this list you can view more details about a particular recipe, from index 1 to 5.
+12. You can also export the option in a similar way. This export will be created in the source (src) folder.
 
 ## References
 
