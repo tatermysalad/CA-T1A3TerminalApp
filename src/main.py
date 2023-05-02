@@ -4,7 +4,7 @@ from colored import fg, bg, attr  # https://pypi.org/project/colored/
 import pdfkit
 import time
 
-print(f"{fg(64)}Welcome to Meal Mate{attr(0)} \n{fg(18)}'The recipe finder for your pantry items you don't know what to with!' {attr(0)}")
+print(f"\n{fg(64)}Welcome to Meal Mate{attr(0)} \n{fg(18)}'The recipe finder for your pantry items you don't know what to with!' {attr(0)}")
 
 # Check if pantry_items.csv exists
 ingr_file_name = "./pantry_list.csv"
@@ -55,7 +55,7 @@ def create_menu():
     print(f"{fg(104)}6. {attr(0)}to {fg(104)}ignore{attr(0)} staple items in search")
     print(f"\n{bg(90)}Search{attr(0)}")
     print(f"{fg(111)}7.{attr(0)} to {fg(111)}search{attr(0)} for recipes")
-    print(f"\n{fg(4)}Exit{attr(0)}")
+    print(f"\n{bg(4)}Exit{attr(0)}")
     print(f"{fg(2)}8.{attr(0)} to {fg(2)}exit{attr(0)}")
     # local variable
     choice = input("Enter your selection: ")
@@ -84,7 +84,7 @@ while user_choice != "8":
                 f"Use the staple items list in your search? (y/n): ")
             staple_setting = staple_ignore(staple_ignore_response)
             print(
-                f"The current setting is to {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
+                f"\nThe search function will now {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
         case "7":
             try:
                 get_recipes(ingr_file_name, staple_file_name, staple_setting)
@@ -97,6 +97,6 @@ while user_choice != "8":
             time.sleep(1)
             continue
 
-    input(f"{bg(177)}Press Enter to continue...{attr(0)}\n")
+    input(f"\n{bg(177)}Press Enter to continue...{attr(0)}\n")
 
-print(f"{bg(2)}Thank you for using Meal Mate{attr(0)}")
+print(f"{bg(2)}Thank you for using Meal Mate{attr(0)}\n")

@@ -21,7 +21,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             for row in reader:
                 if row[1] == "True":
                     p = p + row[0] + ","
-    print(f"{fg(111)}Searching for recipes with {len(p.split(',')) - 1} items{attr(0)}{' and ignoring staple items' if not staple_setting else ''}")
+    print(f"\n{fg(111)}Searching for recipes with {len(p.split(',')) - 1} items{attr(0)}{' and ignoring staple items' if not staple_setting else ''}")
     r = requests.get(
         'https://api.spoonacular.com/recipes/findByIngredients?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=' + p + '&ranking=2&number=5' + ('&ignorePantry=true' if not staple_setting else ''))
     # r.headers['content-type'] = 'application/json; charset=utf8'
@@ -30,7 +30,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         i = x = y = 0
         for recipe in json:
             i += 1
-            if recipe["usedIngredientCount"] == (len(p.split(",")) - 1):
+            if recipe["missedIngredientCount"] == 0:
                 if y == 0:
                     print(
                         f"\n{bg(2)}The following recipes utilise your existing ingredients!{attr(0)}")
@@ -44,7 +44,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             else:
                 if x == 0:
                     print(
-                        f"\n{bg(1)}Here are some recipes which may require a trip to the shops{attr(0)}")
+                        f"\n{bg(1)}The following recipes may require a trip to the shops{attr(0)}")
                     time.sleep(2)
                     x += 1
                 print(
@@ -57,7 +57,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         return
 
     def search_menu():
-        print(f'{bg(random.randrange(0, 256))}Recipe options{attr(0)}')
+        print(f'\n{bg(random.randrange(0, 256))}Recipe options{attr(0)}')
         print(
             f"{fg(random.randrange(0,256))}1. View more details{attr(0)} about a recipe")
         print(f"{fg(random.randrange(0,256))}2. Export{attr(0)} a recipe")
@@ -108,7 +108,12 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
 
     def export_recipe(json):
         try:
-            recipe_id_details = int(recipe_menu(json))
+            recipe_int = int(input(
+                "Press q to return to search options menu\nWhich number recipe?: "))
+            recipe_id = str(json[recipe_int - 1]["id"])
+            recipe_id_response = requests.get(
+                'https://api.spoonacular.com/recipes/' + recipe_id + '/information?apiKey=3e06d892f3044bab8b766176ccd0e18c')
+            recipe_id_details = recipe_id_response.json()
         except TypeError:
             return
         try:

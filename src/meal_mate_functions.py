@@ -1,11 +1,10 @@
 import csv
 from colored import fg, bg, attr
 import time
-import random
 
 
 def view_ingr(file_name):
-    print(f"{bg(28)}View pantry items{attr(0)}")  # dark green color
+    print(f"\n{bg(28)}View pantry items{attr(0)}")  # dark green color
     with open(file_name, "r") as f:
         reader = csv.reader(f)
         reader.__next__()
@@ -14,7 +13,7 @@ def view_ingr(file_name):
 
 
 def add_ingr(file_name):
-    print(f"{bg(2)}Add pantry item{attr(0)}")
+    print(f"\n{bg(2)}Add pantry item{attr(0)}")
     ingr_title = input("Enter your ingredient: ")
     with open(file_name, "a") as ingr_file:
         writer = csv.writer(ingr_file)
@@ -22,7 +21,7 @@ def add_ingr(file_name):
 
 
 def remove_ingr(file_name):
-    print(f"{bg(1)}Remove pantry item{attr(0)}")
+    print(f"\n{bg(1)}Remove pantry item{attr(0)}")
     view_ingr(file_name)
     ingr_title = input("Enter the ingredient that you want to remove: ")
     ingr_lists = []
@@ -40,7 +39,7 @@ def remove_ingr(file_name):
 
 
 def staple_view_ingr(staple_file_name):
-    print(f"{bg(90)}View staple items{attr(0)}")
+    print(f"\n{bg(90)}View staple items{attr(0)}")
     with open(staple_file_name, "r") as f:
         reader = csv.reader(f)
         reader.__next__()
@@ -52,7 +51,7 @@ def staple_view_ingr(staple_file_name):
 
 
 def staple_edit_ingr(staple_file_name):
-    print(f"{bg(90)}Modify staple item{attr(0)}")
+    print(f"\n{bg(90)}Modify staple item{attr(0)}")
     staple_view_ingr(staple_file_name)
     ingr_title = input("Enter the item that you want to check/uncheck: ")
     staple_lists = []
@@ -78,6 +77,6 @@ def staple_ignore(staple_ignore_response):
         case 'n':
             return False
         case _:
-            print(f"{bg(1)}Please enter y (for yes) or n (for no){attr(0)}")
+            print(f"\n{bg(1)}Please enter y (for yes) or n (for no){attr(0)}")
             time.sleep(1)
     
