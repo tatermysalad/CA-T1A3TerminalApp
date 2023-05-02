@@ -1,16 +1,14 @@
 #!/bin/bash
 
-printf "Installing required packages in a virtual environment"
+printf "Installing required packages"
 sleep 1
 
-# check if venv is installed
-python3 -m venv meal_mate
-# check if venv already exists
-source meal_mate/bin/activate
+# Install required packages
 python3 -m pip install -r requirements.txt
-# macOS homebrew install for wkhtmltopdf
+# MacOS homebrew install for wkhtmltopdf
 brew install homebrew/cask/wkhtmltopdf
 
 clear
+printf "Install complete"
 
-python3 main.py
+python main.py

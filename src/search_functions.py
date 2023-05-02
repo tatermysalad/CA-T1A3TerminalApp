@@ -91,7 +91,6 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         recipe_id_details = recipe_menu(json)
         cleaned_summary = cleanhtml(recipe_id_details["summary"])
         index_clean_summary = cleaned_summary.split(".")
-        # shortened_summary = cleaned_summary[:index_clean_summary[-2]]
         index_clean_summary_position = cleaned_summary.find(
             index_clean_summary[-3])
         print(
