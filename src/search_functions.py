@@ -89,7 +89,8 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         cleaned_summary = cleanhtml(recipe_id_details["summary"])
         index_clean_summary = cleaned_summary.split(".")
         # shortened_summary = cleaned_summary[:index_clean_summary[-2]]
-        index_clean_summary_position = cleaned_summary.find(index_clean_summary[-3])
+        index_clean_summary_position = cleaned_summary.find(
+            index_clean_summary[-3])
         print(
             f'{fg(random.randrange(0, 256))}{recipe_id_details["title"]}{attr(0)}')
         print(
@@ -103,6 +104,22 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             # f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary]}{attr(0)}')
             f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary_position]}{attr(0)}')
 
+    def export_recipe(json):
+        try:
+            recipe_id_details = recipe_menu(json)
+        except ValueError:
+            return
+        try:
+            pdfkit.from_url(recipe_id_details["spoonacularSourceUrl"],
+                            './Meal Mate Recipe - ' + recipe_id_details["title"] + '.pdf')
+            print(
+                f"The file 'Meal Mate Recipe - ' {recipe_id_details['title']}.pdf' has been added to the source directory")
+        except OSError:
+            print(
+                "You will need wkhtmltopdf to export, please run 'brew install homebrew/cask/wkhtmltopdf' on your machine")
+        except TypeError:
+            print("Please enter a value between and including 1 and 5")
+
     json = r.json()
     search_choice = ""
     while search_choice != "3":
@@ -111,7 +128,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
             case "1":
                 recipe_export(json)
             case "2":
-                pass
+                export_recipe(json)
             case "3":
                 continue
 
