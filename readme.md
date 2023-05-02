@@ -40,7 +40,7 @@ The target audience for this is anyone who cooks, specifically those who are int
 
 Upon launching the application the staple ingredients are created based on a default list. For example, garlic, ginger, salt, pepper. This contains a True/False value on stock availability.
 
-### Editable list of ingredients
+### Editable list of pantry ingredients
 
 Upon launching the application the ingredients are created as a CSV. This is able to be edited within or outside of the application. Add, remove, view are options within. It will store the main ingredients, ie. protein, vegetables, etc.
 
@@ -59,9 +59,10 @@ The user can view a summary of the recipe within the application. Once the user 
 ### System/Hardware requirements:
 
 -   Requires Python Version 3.10.x or later to be installed
--   Requires MacOS
+-   Requires MacOS for full functionality
+    -   Requires homebrew to install a dependency in the run.sh file
+    -   Export feature will not work on Windows
 -   Requires an internet connection
--   Requires homebrew to install a dependency in the run.sh file
 -   Tested working on MacOS 13.1.1
 
 ### Installation Instructions
