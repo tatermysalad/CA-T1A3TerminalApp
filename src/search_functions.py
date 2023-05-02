@@ -5,29 +5,25 @@ import time
 import random
 import pdfkit
 import re
-from meal_mate_functions import staple_ignore, staple_setting
-from main import staple__default_setting, staple_setting
 
 
-def get_recipes(ingr_file_name, staple_file_name):
+def get_recipes(ingr_file_name, staple_file_name, staple_setting):
     p = ""  # pantry + staples
     with open(ingr_file_name, "r") as f:
         reader = csv.reader(f)
         reader.__next__()
         for row in reader:
             p = p + str(row[0]) + ","
-    if staple_ignore:
+    if staple_setting:
         with open(staple_file_name, "r") as f:
             reader = csv.reader(f)
             reader.__next__()
             for row in reader:
                 if row[1] == "True":
                     p = p + row[0] + ","
-    print(p)
-    print(staple_setting)
     print(f"{fg(111)}Searching for recipes with {len(p.split(',')) - 1} items{attr(0)}{' and ignoring staple items' if not staple_setting else ''}")
     r = requests.get(
-        'https://api.spoonacular.com/recipes/findByIngredients?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=' + p + '&ranking=2&number=5' + ('&ignorePantry=true' if not staple_ignore else ''))
+        'https://api.spoonacular.com/recipes/findByIngredients?apiKey=3e06d892f3044bab8b766176ccd0e18c&ingredients=' + p + '&ranking=2&number=5' + ('&ignorePantry=true' if not staple_setting else ''))
     # r.headers['content-type'] = 'application/json; charset=utf8'
     json = r.json()
     if len(json) > 0:
@@ -42,7 +38,8 @@ def get_recipes(ingr_file_name, staple_file_name):
                     y += 1
                 print(
                     f'{fg(random.randrange(0,256))}{i}. {recipe["title"]}{attr(0)}')
-                print(f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
+                print(
+                    f'Utilises: {recipe["usedIngredientCount"]} items, Requires: {recipe["missedIngredientCount"]} items')
                 time.sleep(0.1)
             else:
                 if x == 0:
@@ -91,8 +88,10 @@ def get_recipes(ingr_file_name, staple_file_name):
         recipe_id_details = recipe_menu(json)
         cleaned_summary = cleanhtml(recipe_id_details["summary"])
         index_clean_summary = cleaned_summary.split(".")
+        shortened_summary = cleaned_summary[:index_clean_summary[-2]]
         # index_clean_summary = cleaned_summary.find("If you like this recipe")
-        print(f'{fg(random.randrange(0, 256))}{recipe_id_details["title"]}{attr(0)}')
+        print(
+            f'{fg(random.randrange(0, 256))}{recipe_id_details["title"]}{attr(0)}')
         print(
             f'{fg(random.randrange(0,256))}Total cooking time: {recipe_id_details["readyInMinutes"]}{attr(0)}')
         print(
@@ -103,10 +102,6 @@ def get_recipes(ingr_file_name, staple_file_name):
         print(
             # f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary]}{attr(0)}')
             f'{fg(random.randrange(0,256))}Summary:\n{cleaned_summary[:index_clean_summary[-2]]}{attr(0)}')
-
-    # def specific_recipe(recipe_menu):
-    #     recipe_id_details = recipe_menu(json)
-    #     print(recipe_details["summary"])
 
     json = r.json()
     search_choice = ""

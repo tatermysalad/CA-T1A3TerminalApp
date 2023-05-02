@@ -80,15 +80,16 @@ while user_choice != "8":
         case "5":
             staple_edit_ingr(staple_file_name)
         case "6":
-            staple__default_setting = True
             staple_ignore_response = input(
-                f"Do you want to use the staple items list in search? (y/n): ")
+                f"Use the staple items list in your search? (y/n): ")
             staple_setting = staple_ignore(staple_ignore_response)
-            print(staple_setting)
             print(
-                f"The current setting is to {fg(5)}{'use the staple list' if staple_setting else 'ignore your staple list'}{attr(0)}")
+                f"The current setting is to {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
         case "7":
-            get_recipes(ingr_file_name, staple_file_name)
+            try:
+                get_recipes(ingr_file_name, staple_file_name, staple_setting)
+            except NameError:
+                get_recipes(ingr_file_name, staple_file_name, True)
         case "8":
             continue
         case _:

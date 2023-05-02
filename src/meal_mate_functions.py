@@ -74,7 +74,7 @@ def staple_edit_ingr(staple_file_name):
 def staple_ignore(staple_ignore_response):
     match staple_ignore_response:
         case 'y':
-            return
+            return True
         case 'n':
             return False
         case _:
