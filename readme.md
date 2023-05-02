@@ -18,37 +18,39 @@
 
 [Python Style Guide - Python Enhancement Proposal 8](https://peps.python.org/pep-0008/)
 
-## Proposal
+## Meal Mate - Proposal
 
 ---
 
-An application which can take an editable list of items and supply a list of recipes for those items
+An recipe finding app for the command line inclined
 
-## App Features:
+Meal Mate provides an interface for a chef to create, read, update and remove items in their pantry. This is then used to search for recipes with the [Spoonacular API](https://spoonacular.com/food-api).
+
+The list of ingredients are stored as CSV documents, with the staple items displayed with True/False values depending on availability - this can be manually edited to remove or add staples depending on the user.
+
+The user can search for recipes with the list of ingredients needed under the recipe title. This can then be exported based on the HTML page from Spoonacular.
+
+The target audience for this is anyone who cooks, specifically those who are interested in utilising specific/leftover ingredients.
+
+## Meal Mate - App Features:
 
 ---
 
 ### Checklist of staple ingredients
 
-Instead of having to add garlic, ginger, salt, pepper, etc. This will be a quick yes/no list for those ingredients
+Upon launching the application the staple ingredients are created based on a default list. For example, garlic, ginger, salt, pepper. This contains a True/False value on stock availability.
 
 ### Editable list of ingredients
 
-This will be stored as a csv, with options to add, remove, view, clear. It will store the main ingredients, ie. protein, vegetables, etc.
+Upon launching the application the ingredients are created as a CSV. This is able to be edited within or outside of the application. Add, remove, view are options within. It will store the main ingredients, ie. protein, vegetables, etc.
 
 ### Fetch a list of recipes via API
 
-The list of recipes from an external source
+The lists of ingredients and staples are used to search for recipes from an external source (Spoonacular). This contains the details of a wide range of cuisines which the user can select from based on name and number of ingredients.
 
 ### Export recipe from CLI to PDF.
 
-Note: Ensure that your features above allow you to demonstrate your understanding of the following language elements and concepts:
-
--   use of variables and the concept of variable scope
--   loops and conditional control structures
--   error handling
-
-Consult with your educator to check your features are sufficient .
+The user can view a summary of the recipe within the application. Once the user is satisfied, they can select the recipe to export. This uses the HTML webpage to convert to PDF and saves to the directory of the user.
 
 ## Help documentation
 
@@ -108,10 +110,14 @@ Consult with your educator to check your features are sufficient .
 
 ---
 
-All utilised sources:
+Find, install and publish python packages with the python package index PyPI. Available at: https://pypi.org/.
 
-https://pypi.org
-https://docs.python.org
-https://requests.readthedocs.io/en/latest/user/quickstart/#response-content
-https://stackoverflow.com
-https://www.w3schools.com/
+Python 3.11.3 documentation 3.11.3 Documentation. Available at: https://docs.python.org/.
+
+Requests 2.29.0 documentation Quickstart . Available at: https://requests.readthedocs.io/en/latest/user/quickstart/#response-content.
+
+W3Schools free online web tutorials W3Schools Online Web Tutorials. Available at: https://www.w3schools.com/.
+
+Where developers learn, share, & build careers Stack Overflow. Available at: https://stackoverflow.com/.
+
+The only food API you'll ever need. Spoonacular. Available at: https://spoonacular.com/food-api.
