@@ -11,4 +11,10 @@ def test_exception():
     with pytest.raises(ValueError):
         exception("q")
 
+def test_success():
+    try:
+        exception("1")
+    except:
+        pytest.fail("Unexpected MyError ..")
+
 

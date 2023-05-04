@@ -4,7 +4,7 @@ import time
 
 
 def view_ingr(file_name):
-    print(f"\n{bg(28)}View pantry items{attr(0)}")  # dark green color
+    print(f"\n{bg(28)}View pantry items{attr(0)}") 
     with open(file_name, "r") as f:
         reader = csv.reader(f)
         reader.__next__()
@@ -30,8 +30,6 @@ def remove_ingr(file_name):
         for row in reader:
             if (ingr_title != row[0]):
                 ingr_lists.append(row)
-    # print(ingr_lists[1:])
-    # We will write that down in the file again
     with open(file_name, "w") as f:
         writer = csv.writer(f)
         writer.writerows(ingr_lists)

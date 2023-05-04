@@ -15,3 +15,7 @@ def test_json_parser():
 # calculations for if statements in the application
 def test_json_length():
     assert len(json) > 0
+
+# checking status code for request
+def test_response():
+    assert r.status_code == 200

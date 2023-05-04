@@ -1,15 +1,25 @@
-from meal_mate_functions import view_ingr, add_ingr, remove_ingr, staple_view_ingr, staple_edit_ingr, staple_ignore
+import time
+from meal_mate_functions import (
+    view_ingr,
+    add_ingr,
+    remove_ingr,
+    staple_view_ingr,
+    staple_edit_ingr,
+    staple_ignore,
+)
 from search_functions import get_recipes
 from colored import fg, bg, attr  # https://pypi.org/project/colored/
-import pdfkit
-import time
 
-print(f"\n{fg(64)}Welcome to Meal Mate{attr(0)} \n{fg(18)}'The recipe finder for your pantry items you don't know what to with!' {attr(0)}")
+print(
+    f"\n{fg(64)}Welcome to Meal Mate{attr(0)} \n{fg(18)}'The recipe finder for your pantry items you don't know what to with!' {attr(0)}"
+)
 
-# Check if pantry_items.csv exists
+# file name pantry_items.csv in current directory
 ingr_file_name = "./pantry_list.csv"
+# file name staple_list.csv in current directory
 staple_file_name = "./staple_list.csv"
 
+# check if file exists otherwise create
 try:
     ingr_file = open(ingr_file_name, "r")
     ingr_file.close()
@@ -19,13 +29,15 @@ except FileNotFoundError as e:
     ingr_file.write("Ingredient\n")
     ingr_file.close()
 
+# check if file exists otherwise create
 try:
     staple_file = open(staple_file_name, "r")
-    ingr_file.close()
+    staple_file.close()
 
 except FileNotFoundError as e:
     staple_file = open(staple_file_name, "w")
-    staple_file.write("""Staple,In_Stock
+    staple_file.write(
+        """Staple,In_Stock
 Olive oil,True
 Vegetable oil,True
 Vinegar,True
@@ -40,10 +52,11 @@ Cinnamon,True
 Curry Powder,True
 Garlic,True
 Onion,True
-Ginger,True""")
+Ginger,True"""
+    )
     staple_file.close()
 
-
+# main menu
 def create_menu():
     print(f"\n{bg(5)}Pantry items{attr(0)}")
     print(f"{fg(28)}1.{attr(0)} to {fg(28)}view{attr(0)} you ingredient list")
@@ -61,10 +74,9 @@ def create_menu():
     choice = input("Enter your selection: ")
     return choice
 
-
-# global variable
 user_choice = ""
 
+# user selection for main menu
 while user_choice != "8":
     user_choice = create_menu()
 
@@ -80,11 +92,14 @@ while user_choice != "8":
         case "5":
             staple_edit_ingr(staple_file_name)
         case "6":
+            # ignore setting
             staple_ignore_response = input(
-                f"Use the staple items list in your search? (y/n): ")
+                f"Use the staple items list in your search? (y/n): "
+            )
             staple_setting = staple_ignore(staple_ignore_response)
             print(
-                f"\nThe search function is set to {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list")
+                f"\nThe search function is set to {fg(5)}{'use' if staple_setting else 'ignore'}{attr(0)} the staple list"
+            )
         case "7":
             try:
                 get_recipes(ingr_file_name, staple_file_name, staple_setting)
