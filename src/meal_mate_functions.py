@@ -1,6 +1,6 @@
 import csv
-from colored import fg, bg, attr
 import time
+from colored import fg, bg, attr
 
 
 def view_ingr(file_name):

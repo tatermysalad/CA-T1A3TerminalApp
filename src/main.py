@@ -56,6 +56,7 @@ Ginger,True"""
     )
     staple_file.close()
 
+
 # main menu
 def create_menu():
     print(f"\n{bg(5)}Pantry items{attr(0)}")
@@ -73,6 +74,7 @@ def create_menu():
     # local variable
     choice = input("Enter your selection: ")
     return choice
+
 
 user_choice = ""
 

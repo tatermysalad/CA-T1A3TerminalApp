@@ -7,6 +7,4 @@ python3 -m pip uninstall -r requirements.txt
 # MacOS homebrew install for wkhtmltopdf
 brew uninstall homebrew/cask/wkhtmltopdf
 
-clear
-
 printf "Uninstall complete. Have a nice day!"
