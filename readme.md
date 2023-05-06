@@ -8,7 +8,7 @@
 [Trello](https://trello.com/b/FUrubUml/t1a3terminalapp)
 <br>
 
-[Video Presentation](https://youtube.com)
+[Video Presentation](https://youtu.be/TZS4XkTeCJc)
 
 ## Style guide
 
