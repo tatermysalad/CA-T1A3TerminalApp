@@ -124,7 +124,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         print(
             f"{fg(random.randrange(0,256))}Summary:{attr(0)}\n{cleaned_summary[:index_clean_summary_position]}\n"
         )
-
+    # export function
     def export_recipe(json):
         try:
             recipe_int = int(
@@ -156,7 +156,7 @@ def get_recipes(ingr_file_name, staple_file_name, staple_setting):
         except IndexError:
             print(f"Please enter a value between and including 1 and {len(json)}")
 
-    # json = r.json()
+    # search menu
     search_choice = ""
     while search_choice != "3":
         search_choice = search_menu()
